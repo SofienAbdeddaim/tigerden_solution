@@ -1,0 +1,167 @@
+<div id="stepper_template" fusePerfectScrollbar>
+  <mat-vertical-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your company name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Company Name" formControlName="companyName" required>
+          <mat-icon matSuffix>business_center</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Customer Name" formControlName="customerName" required>
+          <mat-icon matSuffix>account_box</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Fill out your email address</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Email Id" formControlName="emailId" required>
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="forthFormGroup">
+      <form [formGroup]="forthFormGroup">
+        <ng-template matStepLabel>Fill out your address 1</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Address 1" formControlName="address1" required>
+          <mat-icon matSuffix>add_location</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="fifthFormGroup" optional>
+      <form [formGroup]="fifthFormGroup">
+        <ng-template matStepLabel>Fill out your address 2</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Address 2" formControlName="address2" required>
+          <mat-icon matSuffix>add_location</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="sixthFormGroup" optional>
+      <form [formGroup]="sixthFormGroup">
+        <ng-template matStepLabel>Fill out your address 3</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Address 3" formControlName="address3" required>
+          <mat-icon matSuffix>add_location</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="seventhFormGroup">
+      <form [formGroup]="seventhFormGroup">
+        <ng-template matStepLabel>Fill out your city name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="City" formControlName="cityName" required>
+          <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="eigthFormGroup">
+      <form [formGroup]="eigthFormGroup">
+        <ng-template matStepLabel>Fill out your state name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="State" formControlName="stateName" required>
+          <mat-icon matSuffix>domain</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="ninthFormGroup">
+      <form [formGroup]="ninthFormGroup">
+        <ng-template matStepLabel>Fill out your country name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Country" formControlName="countryName" required>
+          <mat-icon matSuffix>flag</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="tenthFormGroup">
+      <form [formGroup]="tenthFormGroup">
+        <ng-template matStepLabel>Fill out your pincode</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Pincode" formControlName="pincode" required>
+          <mat-icon matSuffix>confirmation_number</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="eleventhFormGroup">
+      <form [formGroup]="eleventhFormGroup">
+        <ng-template matStepLabel>Fill out your contact number</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Contact Number" formControlName="contactNumber" required>
+          <mat-icon matSuffix>contact_phone</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="twelvthFormGroup" optional>
+      <form [formGroup]="twelvthFormGroup">
+        <ng-template matStepLabel>Fill out your phone number</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Mobile Number" formControlName="mobileNumber" required>
+          <mat-icon matSuffix>phone_iphone</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <mat-icon matSuffix>check_circle</mat-icon>
+      <div>
+        <button mat-button (click)="onSaveClient()">Confirm your information!</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
