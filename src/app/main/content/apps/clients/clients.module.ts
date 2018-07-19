@@ -3,8 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
 
 import {
-  MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule,
-  MatMenuModule, MatRippleModule, MatSidenavModule, MatStepperModule, MatTableModule, MatToolbarModule
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule
 } from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -16,6 +28,7 @@ import { ClientFormComponent } from './client-form/client-form.component';
 import {ClientListComponent} from "./client-list/client-list.component";
 import {FuseClientsSelectedBarComponent} from "./selected-bar/selected-bar.component";
 import {ClientDomainForm} from "./client-domain-form/client-domain-form";
+import {AgmCoreModule} from "@agm/core";
 
 const routes: Routes = [
     {
@@ -49,15 +62,20 @@ const routes: Routes = [
         MatRippleModule,
         MatSidenavModule,
         MatTableModule,
+        MatTabsModule,
+        MatSelectModule,
         MatToolbarModule,
         MatStepperModule,
         FuseSharedModule,
-        FuseConfirmDialogModule
+        FuseConfirmDialogModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyD81ecsCj4yYpcXSLFcYU97PvRsE_X8Bx8'
+        }),
     ],
     providers      : [
         ClientsService
     ],
-    entryComponents: [ClientFormComponent]
+    entryComponents: [ClientFormComponent, ClientDomainForm]
 })
 export class ClientsModule
 {

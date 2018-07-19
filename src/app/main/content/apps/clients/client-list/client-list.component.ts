@@ -78,8 +78,6 @@ export class ClientListComponent implements OnInit, OnDestroy
     this.onSelectedClientsChangedSubscription.unsubscribe();
   }
 
-  editContact(contact) {}
-
   /**
    * Delete Contact
    */
@@ -106,12 +104,12 @@ export class ClientListComponent implements OnInit, OnDestroy
     this.clientsService.toggleSelectedClient(id);
   }
 
-    editContact(contact)
+    showClientData(data)
     {
         this.dialogRef = this.dialogShow.open(ClientDomainForm, {
-            panelClass: 'contact-form-dialog',
+            panelClass: 'client-form-domain-dialog',
             data      : {
-                contact: contact,
+                contact: data,
                 action : 'edit'
             }
         });
@@ -139,7 +137,7 @@ export class ClientListComponent implements OnInit, OnDestroy
                      */
                     case 'delete':
 
-                        // this.deleteContact(contact);
+                        // this.deleteContact(data);
 
                         break;
                 }

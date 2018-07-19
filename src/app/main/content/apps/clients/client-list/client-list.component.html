@@ -157,7 +157,7 @@
   <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *cdkRowDef="let client; columns: displayedColumns;"
            class="contact"
-           (click)="editContact(client)"
+           (click)="showClientData(client)"
            [ngClass]="{'mat-light-blue-50-bg':checkboxes[client.id]}"
            matRipple
            [@animate]="{value:'*',params:{y:'100%'}}">
