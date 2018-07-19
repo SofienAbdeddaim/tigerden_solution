@@ -7,6 +7,8 @@ import { Observable, Subscription } from 'rxjs';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 import {ClientsService} from "../clients.service";
+import {ClientFormComponent} from "../client-form/client-form.component";
+import {ClientDomainForm} from "../client-domain-form/client-domain-form";
 
 @Component({
   selector     : 'client-list',
@@ -29,12 +31,14 @@ export class ClientListComponent implements OnInit, OnDestroy
   onSelectedClientsChangedSubscription: Subscription;
 
   dialogRef: any;
+  dialogRefShow: any;
 
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
   constructor(
     private clientsService: ClientsService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public dialogShow: MatDialog
   ) {
   //  onClientChangeSubscription
     this.onClientsChangedSubscription =
@@ -101,6 +105,46 @@ export class ClientListComponent implements OnInit, OnDestroy
   {
     this.clientsService.toggleSelectedClient(id);
   }
+
+    editContact(contact)
+    {
+        this.dialogRef = this.dialogShow.open(ClientDomainForm, {
+            panelClass: 'contact-form-dialog',
+            data      : {
+                contact: contact,
+                action : 'edit'
+            }
+        });
+
+        this.dialogRefShow.afterClosed()
+            .subscribe(response => {
+                if ( !response )
+                {
+                    return;
+                }
+                const actionType: string = response[0];
+                const formData: FormGroup = response[1];
+                switch ( actionType )
+                {
+                    /**
+                     * Save
+                     */
+                    case 'save':
+
+                        // this.contactsService.updateContact(formData.getRawValue());
+
+                        break;
+                    /**
+                     * Delete
+                     */
+                    case 'delete':
+
+                        // this.deleteContact(contact);
+
+                        break;
+                }
+            });
+    }
 }
 
 export class FilesDataSource extends DataSource<any>

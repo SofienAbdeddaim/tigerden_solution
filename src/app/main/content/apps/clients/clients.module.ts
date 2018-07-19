@@ -15,6 +15,7 @@ import { ClientsService } from './clients.service';
 import { ClientFormComponent } from './client-form/client-form.component';
 import {ClientListComponent} from "./client-list/client-list.component";
 import {FuseClientsSelectedBarComponent} from "./selected-bar/selected-bar.component";
+import {ClientDomainForm} from "./client-domain-form/client-domain-form";
 
 const routes: Routes = [
     {
@@ -31,7 +32,8 @@ const routes: Routes = [
         ClientsComponent,
         ClientFormComponent,
       ClientListComponent,
-      FuseClientsSelectedBarComponent
+      FuseClientsSelectedBarComponent,
+        ClientDomainForm
     ],
     imports        : [
         RouterModule.forChild(routes),

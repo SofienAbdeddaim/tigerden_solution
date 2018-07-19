@@ -128,19 +128,7 @@ export const navigation = [
         'type': 'item',
         'icon': 'build',
         'url': '/apps/settings'
-      },
-      {
-        'id'   : 'login',
-        'title': 'Login',
-        'type' : 'item',
-        'url'  : '/pages/auth/login'
-      },
-      {
-        'id'   : 'register',
-        'title': 'Register',
-        'type' : 'item',
-        'url'  : '/pages/auth/register'
-      },
+      }
     ]
   }
 ];
