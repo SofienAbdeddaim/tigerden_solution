@@ -9,6 +9,8 @@ import { fuseAnimations } from '@fuse/animations';
 
 import { ClientsService } from './clients.service';
 import {ClientFormComponent} from "./client-form/client-form.component";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
+import {ClientDomainComponent} from "./client-domain/client-domain";
 
 @Component({
     selector     : 'clients-component',
@@ -22,6 +24,9 @@ export class ClientsComponent implements OnInit, OnDestroy
     searchInput: FormControl;
     hasSelectedClients: boolean;
     dialogRef: any;
+    dialogRefDomain: any;
+    iconFlag = 'person_add';
+    domainShow: boolean;
     onSelectedClientsChangedSubscription: Subscription;
 
     //--------------------------------------->
@@ -51,26 +56,32 @@ export class ClientsComponent implements OnInit, OnDestroy
         });
     }
 
-    newContact()
-    {
-        this.dialogRef = this.dialog.open(ClientFormComponent, {
+    newDomain() {
+        this.dialogRefDomain = this.dialog.open(ClientDomainComponent, {
             height: '90%',
             panelClass: 'contact-form-dialog',
-            data      : {
+            data: {
                 action: 'new'
             }
         });
+    }
 
-        // this.dialogRef.afterClosed()
-        //     .subscribe((response: FormGroup) => {
-        //         if ( !response )
-        //         {
-        //             return;
-        //         }
-        //
-        //         // this.contactsService.updateContact(response.getRawValue());
-        //
-        //     });
+    newContact()
+    {
+
+        if(this.iconFlag === 'person_add') {
+            this.dialogRef = this.dialog.open(ClientFormComponent, {
+                height: '90%',
+                panelClass: 'contact-form-dialog',
+                data      : {
+                    action: 'new'
+                }
+            });
+        }
+        else {
+            this.domainShow = false;
+            this.iconFlag = 'person_add';
+        }
 
     }
 
@@ -78,5 +89,12 @@ export class ClientsComponent implements OnInit, OnDestroy
   {
     this.onSelectedClientsChangedSubscription.unsubscribe();
   }
+
+    onChangeView(event) {
+        if(event) {
+            this.iconFlag = 'reply';
+            this.domainShow = true;
+        }
+    }
 
 }

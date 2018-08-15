@@ -29,6 +29,7 @@ import {ClientListComponent} from "./client-list/client-list.component";
 import {FuseClientsSelectedBarComponent} from "./selected-bar/selected-bar.component";
 import {ClientDomainForm} from "./client-domain-form/client-domain-form";
 import {AgmCoreModule} from "@agm/core";
+import {ClientDomainComponent} from "./client-domain/client-domain";
 
 const routes: Routes = [
     {
@@ -46,7 +47,8 @@ const routes: Routes = [
         ClientFormComponent,
       ClientListComponent,
       FuseClientsSelectedBarComponent,
-        ClientDomainForm
+        ClientDomainForm,
+        ClientDomainComponent
     ],
     imports        : [
         RouterModule.forChild(routes),
@@ -75,7 +77,7 @@ const routes: Routes = [
     providers      : [
         ClientsService
     ],
-    entryComponents: [ClientFormComponent, ClientDomainForm]
+    entryComponents: [ClientFormComponent, ClientDomainComponent]
 })
 export class ClientsModule
 {
