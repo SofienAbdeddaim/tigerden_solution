@@ -103,7 +103,8 @@ export class ClientListComponent implements OnInit, OnDestroy {
             height: '90%',
             panelClass: 'contact-form-dialog',
             data: {
-                action: 'new'
+                action: 'new',
+                data: data
             }
         });
     }

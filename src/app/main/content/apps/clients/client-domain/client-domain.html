@@ -1,22 +1,169 @@
-<div class="domain-temp">
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-                    <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
-                    <span>{{ state.name }}</span> |
-                    <small>Population: {{state.population}}</small>
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
+<!--<div class="domain-temp">-->
+    <!--<form class="example-form">-->
+        <!--<mat-form-field class="example-full-width">-->
+            <!--<input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">-->
+            <!--<mat-autocomplete #auto="matAutocomplete">-->
+                <!--<mat-option *ngFor="let state of filteredStates | async" [value]="state.name">-->
+                    <!--<img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />-->
+                    <!--<span>{{ state.name }}</span> |-->
+                    <!--<small>Population: {{state.population}}</small>-->
+                <!--</mat-option>-->
+            <!--</mat-autocomplete>-->
+        <!--</mat-form-field>-->
 
-        <br />
+        <!--<br />-->
 
-        <mat-slide-toggle
-                [checked]="stateCtrl.disabled"
-                (change)="stateCtrl.disabled ? stateCtrl.enable() : stateCtrl.disable()">
-            Disable Input?
-        </mat-slide-toggle>
-    </form>
-</div>
+        <!--<mat-slide-toggle-->
+                <!--[checked]="stateCtrl.disabled"-->
+                <!--(change)="stateCtrl.disabled ? stateCtrl.enable() : stateCtrl.disable()">-->
+            <!--Disable Input?-->
+        <!--</mat-slide-toggle>-->
+    <!--</form>-->
+<!--</div>-->
+<mat-tab-group class="addresses">
+
+    <mat-tab label="Login Details">
+        <div fxFlex fxLayout="column">
+
+                <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="m-0 mr-16 secondary-text">details</mat-icon>
+                    <div class="h2 secondary-text">Login Details</div>
+                </div>
+
+                <form class="mat-white-bg p-24 mr-24 mb-24"
+                      name="form" [formGroup]="form">
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                    <mat-form-field fxFlex="50">
+                        <input matInput placeholder="Domain Name" formControlName="domainName" required>
+                        <mat-error *ngIf="formErrors.domainName.required">
+                            First Name is required!
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="100">
+                        <mat-select placeholder="Type" formControlName="type" required>
+                            <mat-option [value]="'Wordpress'">
+                                Wordpress
+                            </mat-option>
+                            <mat-option [value]="'PHP'">
+                                PHP
+                            </mat-option>
+                            <mat-option [value]="'HTML'">
+                                HTML
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formErrors.type.required">
+                            Country is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Cpanel Username" formControlName="cpanelUsername">
+                            <mat-error *ngIf="formErrors.cpanelUsername.required">
+                               !!
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Admin Username" formControlName="adminEmail">
+                            <mat-error *ngIf="formErrors.adminEmail.required">
+                               !!
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Master Password" formControlName="masterPassword">
+                            <mat-error *ngIf="formErrors.masterPassword.required">
+                                !!
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Editor Name" formControlName="editorName">
+                            <mat-error *ngIf="formErrors.editorName.required">
+                                not yet!
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Editor Email" formControlName="editorEmail">
+                            <mat-error *ngIf="formErrors.editorEmail.required">
+                                !!
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Editor Password" formControlName="editorPassword">
+                            <mat-error *ngIf="formErrors.editorPassword.required">
+                                not yet!
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Client Email" formControlName="clientEmail">
+                            <mat-error *ngIf="formErrors.clientEmail.required">
+                                !!
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Security" formControlName="security">
+                            <mat-error *ngIf="formErrors.security.required">
+                                not yet!
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                </form>
+
+        </div>
+    </mat-tab>
+
+    <mat-tab label="SEO Details" fxLayout="column">
+        <div fxFlex fxLayout="column">
+            <div class="address h4 py-24">SEO Details</div>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="API Key" fxLayout="column">
+        <div fxFlex fxLayout="column">
+            <div class="address h4 py-24">API Key</div>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="Cpanel Details" fxLayout="column">
+        <div fxFlex fxLayout="column">
+            <div class="address h4 py-24">Cpanel Details</div>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="Domain Details" fxLayout="column">
+        <div fxFlex fxLayout="column">
+            <div class="address h4 py-24">Domain Details</div>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="Performance" fxLayout="column">
+        <div fxFlex fxLayout="column">
+            <div class="address h4 py-24">Performance</div>
+        </div>
+    </mat-tab>
+</mat-tab-group>

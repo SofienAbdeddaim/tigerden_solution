@@ -25,5 +25,9 @@ export class ClientDomainForm
 
     constructor() {}
 
+    justTest(e) {
+        e.stopPropagation();
+        console.log('test');
+    }
 
 }

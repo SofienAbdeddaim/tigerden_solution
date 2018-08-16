@@ -3,123 +3,129 @@
     <mat-tab label="Client Details">
 
         <div class="order-details tab-content p-24" fusePerfectScrollbar>
+            <mat-accordion class="example-headers-align" [multi]="true">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Company information
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{data.customerName}}
+                            <mat-icon>work</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
 
-            <div class="section pb-48">
+                    <mat-form-field>
+                        <input matInput placeholder="Customer Name" [value]="data.customerName" [readonly]="true">
+                    </mat-form-field>
 
-                <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
-                    <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
-                    <div class="h2 secondary-text">Client</div>
-                </div>
+                    <mat-form-field>
+                        <input matInput placeholder="Company Name" [value]="data.companyName" [readonly]="true">
+                    </mat-form-field>
+                </mat-expansion-panel>
 
-                <div class="customer">
-                    <table class="simple">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Company</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div fxLayout="row" fxLayoutAlign="start center">
-                                    <span class="name text-truncate">{{data.customerName}}</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="email text-truncate">{{data.emailId}}</span>
-                            </td>
-                            <td>
-                                <span class="phone text-truncate">{{data.contactNumber}}</span>
-                            </td>
-                            <td>
-                                <span class="company text-truncate">{{data.companyName}}</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Contact Information
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{data.contactNumber}}
+                            <mat-icon>contact_phone</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <input matInput placeholder="Contact Number" [value]="data.contactNumber" [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Mobile Number" [value]="data.mobileNumber" [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="E-mail" [value]="data.emailId" [readonly]="true">
+                    </mat-form-field>
 
-                <mat-tab-group class="addresses">
-                    <mat-tab label="Country">
-                        <div fxFlex fxLayout="column">
-                            <div class="address h4 py-24">{{data.country}}</div>
-                        </div>
-                    </mat-tab>
-                    <mat-tab label="City">
-                        <div fxFlex fxLayout="column">
-                            <div class="address h4 py-24">{{data.city}}</div>
-                        </div>
-                    </mat-tab>
-                    <mat-tab label="State">
-                        <div fxFlex fxLayout="column">
-                            <div class="address h4 py-24">{{data.state}}</div>
-                        </div>
-                    </mat-tab>
-                    <mat-tab label="Pin code">
-                        <div fxFlex fxLayout="column">
-                            <div class="address h4 py-24">{{data.pincode}}</div>
-                        </div>
-                    </mat-tab>
-                    <mat-tab label="Mobile number">
-                        <div fxFlex fxLayout="column">
-                            <div class="address h4 py-24">{{data.mobileNumber}}</div>
-                        </div>
-                    </mat-tab>
-                    <mat-tab label="Address 1">
-                        <div fxFlex fxLayout="column">
-                            <div class="address h4 py-24">{{data.address1}}</div>
-                        </div>
-                    </mat-tab>
-                    <mat-tab label="Address 2">
-                        <div fxFlex fxLayout="column">
-                            <div class="address h4 py-24">{{data.address2}}</div>
-                        </div>
-                    </mat-tab>
-                    <mat-tab label="Address 3">
-                        <div fxFlex fxLayout="column">
-                            <div class="address h4 py-24">{{data.address3}}</div>
-                        </div>
-                    </mat-tab>
-                </mat-tab-group>
-            </div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Locaion
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{data.address1}}
+                            <mat-icon>location_on</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Country" [value]="data.country" [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="City" [value]="data.city" [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="State" [value]="data.state" [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Pin Code" [value]="data.pincode" [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Address 1" [value]="data.address1" [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Address 2" [value]="data.address2" [readonly]="true">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Address 3" [value]="data.address3" [readonly]="true">
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+            </mat-accordion>
         </div>
     </mat-tab>
 
     <mat-tab label="List Domain">
         <div class="products tab-content p-24" fusePerfectScrollbar>
-            <table class="simple">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="product-row">
-                    <td class="w-64">
-                        gdfdgfd
-                    </td>
-                    <td class="w-80">
-                        <img class="product-image">
-                    </td>
-                    <td>
-                        gfdg
-                    </td>
-                    <td>
-                        gfdhdfh
-                    </td>
-                    <td>
-                        dfhh
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <mat-accordion class="example-headers-align" [multi]="true">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{data.customerName}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                                <mat-icon (click)="justTest($event)">domain</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Customer Name" [value]="data.customerName" [readonly]="true">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Company Name" [value]="data.companyName" [readonly]="true">
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{data.customerName}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <mat-icon>domain</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Customer Name" [value]="data.customerName" [readonly]="true">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Company Name" [value]="data.companyName" [readonly]="true">
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+            </mat-accordion>
         </div>
     </mat-tab>
 

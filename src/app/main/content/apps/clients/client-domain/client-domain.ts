@@ -1,8 +1,9 @@
-import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {FormControl} from "@angular/forms";
-import {map, startWith} from "rxjs/operators";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {map, startWith, takeUntil} from "rxjs/operators";
 import {Observable} from "rxjs/Observable";
+import {Subject} from "rxjs/Subject";
 
 export class State {
     constructor(public name: string, public population: string, public flag: string) { }
@@ -14,11 +15,14 @@ export class State {
     styleUrls: ['./client-domain.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClientDomainComponent implements OnInit {
+export class ClientDomainComponent implements OnInit, OnDestroy {
 
+    form: FormGroup;
+    formErrors: any;
+    private _unsubscribeAll: Subject<any>;
     stateCtrl: FormControl;
     filteredStates: Observable<any[]>;
-
+    customerData;
     states: State[] = [
         {
             name: 'Arkansas',
@@ -48,14 +52,29 @@ export class ClientDomainComponent implements OnInit {
 
     constructor(
         public dialogRef: MatDialogRef<ClientDomainComponent>,
-        @Inject(MAT_DIALOG_DATA) private data: any
+        @Inject(MAT_DIALOG_DATA) private _data: any,
+        private _formBuilder: FormBuilder
     ) {
+        this.customerData = this._data.data;
+        console.log(this.customerData);
         this.stateCtrl = new FormControl();
         this.filteredStates = this.stateCtrl.valueChanges
             .pipe(
                 startWith(''),
                 map(state => state ? this.filterStates(state) : this.states.slice())
             );
+        this.formErrors = {
+            domainName : {},
+            type   : {},
+            cpanelUsername: {},
+            adminEmail: {},
+            masterPassword: {},
+            editorName: {},
+            editorEmail: {},
+            editorPassword: {},
+            clientEmail: {},
+            security: {},
+        };
     }
 
     filterStates(name: string) {
@@ -63,6 +82,61 @@ export class ClientDomainComponent implements OnInit {
             state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.form = this._formBuilder.group({
+            // company   : [
+            //     {
+            //         value   : 'Google',
+            //         disabled: true
+            //     }, Validators.required
+            // ],
+            domainName : ['', Validators.required],
+            type   : ['', Validators.required],
+            cpanelUsername: [''],
+            adminEmail: [''],
+            masterPassword: [''],
+            editorName: [''],
+            editorEmail: [''],
+            editorPassword: [''],
+            clientEmail: [''],
+            security: [''],
+        });
+
+        this.form.valueChanges
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe(() => {
+                this.onFormValuesChanged();
+            });
+        this._unsubscribeAll = new Subject();
+    }
+
+    ngOnDestroy(): void
+    {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
+    }
+
+    onFormValuesChanged(): void
+    {
+        for ( const field in this.formErrors )
+        {
+            if ( !this.formErrors.hasOwnProperty(field) )
+            {
+                continue;
+            }
+
+            // Clear previous errors
+            this.formErrors[field] = {};
+
+            // Get the control
+            const control = this.form.get(field);
+
+            if ( control && control.dirty && !control.valid )
+            {
+                this.formErrors[field] = control.errors;
+            }
+        }
+    }
 
 }
