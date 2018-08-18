@@ -17,6 +17,11 @@ export class State {
 })
 export class ClientDomainComponent implements OnInit, OnDestroy {
 
+    googleAnalytic: boolean = false;
+    searchConsole: boolean = false;
+    googlePlace: boolean = false;
+    numberOfLocation = 1;
+    numberOfDomain = 1;
     form: FormGroup;
     formErrors: any;
     private _unsubscribeAll: Subject<any>;
@@ -74,7 +79,20 @@ export class ClientDomainComponent implements OnInit, OnDestroy {
             editorPassword: {},
             clientEmail: {},
             security: {},
+            ratioForBlog: {},
+            sliderRatio: {},
+            featuredRatio: {},
+            themePurchaseCode: {},
+            sitemapinSidebar: {},
         };
+    }
+
+    onAddLocation() {
+        this.numberOfLocation++;
+    }
+
+    onAddDomain() {
+        this.numberOfDomain++;
     }
 
     filterStates(name: string) {
@@ -100,6 +118,11 @@ export class ClientDomainComponent implements OnInit, OnDestroy {
             editorPassword: [''],
             clientEmail: [''],
             security: [''],
+            ratioForBlog: [''],
+            sliderRatio: [''],
+            featuredRatio: [''],
+            themePurchaseCode: [''],
+            sitemapinSidebar: [''],
         });
 
         this.form.valueChanges
@@ -136,6 +159,10 @@ export class ClientDomainComponent implements OnInit, OnDestroy {
             {
                 this.formErrors[field] = control.errors;
             }
+
+            console.log(this.form);
+            console.log(this.form.value);
+            console.log(this.formErrors);
         }
     }
 

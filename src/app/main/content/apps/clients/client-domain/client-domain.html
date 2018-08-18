@@ -1,26 +1,6 @@
-<!--<div class="domain-temp">-->
-    <!--<form class="example-form">-->
-        <!--<mat-form-field class="example-full-width">-->
-            <!--<input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">-->
-            <!--<mat-autocomplete #auto="matAutocomplete">-->
-                <!--<mat-option *ngFor="let state of filteredStates | async" [value]="state.name">-->
-                    <!--<img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />-->
-                    <!--<span>{{ state.name }}</span> |-->
-                    <!--<small>Population: {{state.population}}</small>-->
-                <!--</mat-option>-->
-            <!--</mat-autocomplete>-->
-        <!--</mat-form-field>-->
-
-        <!--<br />-->
-
-        <!--<mat-slide-toggle-->
-                <!--[checked]="stateCtrl.disabled"-->
-                <!--(change)="stateCtrl.disabled ? stateCtrl.enable() : stateCtrl.disable()">-->
-            <!--Disable Input?-->
-        <!--</mat-slide-toggle>-->
-    <!--</form>-->
-<!--</div>-->
 <mat-tab-group class="addresses">
+
+    <!-- Login Details-->
 
     <mat-tab label="Login Details">
         <div fxFlex fxLayout="column">
@@ -132,38 +112,432 @@
 
                     </div>
 
+                    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Ratio for Blog" formControlName="ratioForBlog">
+                            <mat-error *ngIf="formErrors.ratioForBlog.required">
+                                !!
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Slider Ratio" formControlName="sliderRatio">
+                            <mat-error *ngIf="formErrors.sliderRatio.required">
+                                not yet!
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Featured Ratio" formControlName="featuredRatio">
+                            <mat-error *ngIf="formErrors.featuredRatio.required">
+                                not yet!
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Theme Purchase Code" formControlName="themePurchaseCode" [value]="'JHFHKJGBJK'">
+                            <mat-error *ngIf="formErrors.themePurchaseCode.required">
+                                !!
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                    <mat-checkbox>Sitemap in Sidebar</mat-checkbox>
+
                 </form>
+
+            <!-- Buttons -->
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <button mat-raised-button color="accent">Submit</button>
+                <button mat-raised-button color="warn">Cancel</button>
+                <button mat-raised-button color="primary">Reset</button>
+            </div>
+            <!-- / Buttons-->
 
         </div>
     </mat-tab>
+
+    <!-- / Login Details-->
+
+    <!-- SEO Details-->
 
     <mat-tab label="SEO Details" fxLayout="column">
         <div fxFlex fxLayout="column">
-            <div class="address h4 py-24">SEO Details</div>
+
+            <!--En tete-->
+            <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="m-0 mr-16 secondary-text">details</mat-icon>
+                <div class="h2 secondary-text">SEO Details</div>
+            </div>
+            <!-- / En tete-->
+
+            <!--Google analytique checkbox-->
+            <mat-checkbox [(ngModel)]="googleAnalytic">Google analytique checkbox</mat-checkbox>
+
+            <mat-card *ngIf="googleAnalytic">
+                <mat-selection-list>
+                <mat-list-option [(ngModel)]="googleAnalytic">Account Created</mat-list-option>
+                <mat-list-option [(ngModel)]="googleAnalytic">Analytics Profile Authenticating from Wordpress</mat-list-option>
+                <mat-list-option [(ngModel)]="googleAnalytic">Check for Acquisition Search Console</mat-list-option>
+                <mat-list-option [(ngModel)]="googleAnalytic">Demographic</mat-list-option>
+                <mat-list-option [(ngModel)]="googleAnalytic">New User Adding</mat-list-option>
+                    <mat-form-field fxFlex="50">
+                        <input matInput placeholder="Google Analytics Code">
+                    </mat-form-field>
+                </mat-selection-list>
+            </mat-card>
+            <!-- / Google analytique checkbox-->
+
+            <!--Search Console-->
+            <mat-checkbox [(ngModel)]="searchConsole">Search Console</mat-checkbox>
+
+            <mat-card *ngIf="searchConsole">
+                <mat-selection-list>
+                    <mat-list-option [(ngModel)]="searchConsole">Property Added ?</mat-list-option>
+                    <mat-list-option [(ngModel)]="searchConsole">Linking to Google Analytics</mat-list-option>
+                    <mat-list-option [(ngModel)]="searchConsole">Adding Site-Map</mat-list-option>
+                    <mat-list-option [(ngModel)]="searchConsole">New User Adding</mat-list-option>
+                </mat-selection-list>
+            </mat-card>
+            <!-- / Search Console-->
+
+            <!--Google Place-->
+            <mat-checkbox [(ngModel)]="googlePlace">Google Place</mat-checkbox>
+
+            <mat-card *ngIf="googlePlace">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngFor="let dummy of ' '.repeat(numberOfLocation).split('')">
+
+                    <mat-form-field fxFlex="50">
+                        <input matInput placeholder="Place Name">
+                        <!--<mat-error *ngIf="formErrors.featuredRatio.required">-->
+                            <!--not yet!-->
+                        <!--</mat-error>-->
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="100">
+                        <mat-select placeholder="Status">
+                            <mat-option [value]="'Postcard Sent'">
+                                Postcard Sent
+                            </mat-option>
+                            <mat-option [value]="'Requested Ownership'">
+                                Requested Ownership
+                            </mat-option>
+                            <mat-option [value]="'Verifed'">
+                                Verifed
+                            </mat-option>
+                        </mat-select>
+                        <!--<mat-error *ngIf="formErrors.type.required">-->
+                            <!--Country is required!-->
+                        <!--</mat-error>-->
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="100">
+                        <mat-select placeholder="New User Adding">
+                            <mat-option [value]="'Yes'">
+                                Yes
+                            </mat-option>
+                            <mat-option [value]="'No'">
+                                No
+                            </mat-option>
+                        </mat-select>
+                        <!--<mat-error *ngIf="formErrors.type.required">-->
+                        <!--Country is required!-->
+                        <!--</mat-error>-->
+                    </mat-form-field>
+
+                </div>
+                <button mat-raised-button color="accent" (click)="onAddLocation()">Add</button>
+            </mat-card>
+            <!-- / Google Place-->
+
+            <!-- Buttons -->
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <button mat-raised-button color="accent">Submit</button>
+                <button mat-raised-button color="warn">Cancel</button>
+                <button mat-raised-button color="primary">Reset</button>
+            </div>
+            <!-- / Buttons-->
+
         </div>
     </mat-tab>
+
+    <!-- / SEO Details-->
+
+    <!-- API Key -->
 
     <mat-tab label="API Key" fxLayout="column">
-        <div fxFlex fxLayout="column">
-            <div class="address h4 py-24">API Key</div>
+        <!--En tete-->
+        <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="m-0 mr-16 secondary-text">vpn_key</mat-icon>
+            <div class="h2 secondary-text">API Key</div>
         </div>
+        <!-- / En tete-->
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+        <mat-form-field fxFlex="50">
+            <input matInput placeholder="Akismet Key" [value]="'jkhbgjh7687'">
+            <!--<mat-error *ngIf="formErrors.featuredRatio.required">-->
+            <!--not yet!-->
+            <!--</mat-error>-->
+        </mat-form-field>
+        <mat-form-field fxFlex="50">
+            <input matInput placeholder="Shortpixel API" [value]="'jkhbgjh7687'">
+            <!--<mat-error *ngIf="formErrors.featuredRatio.required">-->
+            <!--not yet!-->
+            <!--</mat-error>-->
+        </mat-form-field>
+        <mat-form-field fxFlex="50">
+            <input matInput placeholder="Google Map API" [value]="'jkhbgjh7687'">
+            <!--<mat-error *ngIf="formErrors.featuredRatio.required">-->
+            <!--not yet!-->
+            <!--</mat-error>-->
+        </mat-form-field>
+    </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+            <mat-form-field fxFlex="50">
+                <input matInput placeholder="Use Any Fonts" [value]="'jkhbgjh7687'">
+                <!--<mat-error *ngIf="formErrors.featuredRatio.required">-->
+                <!--not yet!-->
+                <!--</mat-error>-->
+            </mat-form-field>
+            <mat-form-field fxFlex="50">
+                <input matInput placeholder="CloudFlare API" [value]="'jkhbgjh7687'">
+                <!--<mat-error *ngIf="formErrors.featuredRatio.required">-->
+                <!--not yet!-->
+                <!--</mat-error>-->
+            </mat-form-field>
+
+        </div>
+
+        <!-- Buttons -->
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            <button mat-raised-button color="accent">Submit</button>
+            <button mat-raised-button color="warn">Cancel</button>
+            <button mat-raised-button color="primary">Reset</button>
+        </div>
+        <!-- / Buttons-->
     </mat-tab>
 
+    <!-- / API Key -->
+
+    <!-- Cpanel Details -->
+
     <mat-tab label="Cpanel Details" fxLayout="column">
-        <div fxFlex fxLayout="column">
-            <div class="address h4 py-24">Cpanel Details</div>
+        <!--En tete-->
+        <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="m-0 mr-16 secondary-text">developer_board</mat-icon>
+            <div class="h2 secondary-text">Cpanel Details</div>
         </div>
+        <!-- / En tete-->
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+            <mat-form-field fxFlex="100">
+                <mat-select placeholder="Website">
+                    <mat-option [value]="'No'">
+                        No
+                    </mat-option>
+                    <mat-option [value]="'HTML'">
+                        HTML
+                    </mat-option>
+                    <mat-option [value]="'Not Hosted'">
+                        Not Hosted
+                    </mat-option>
+                    <mat-option [value]="'Wordpress'">
+                        Wordpress
+                    </mat-option>
+                    <mat-option [value]="'Not Linked'">
+                        Not Linked
+                    </mat-option>
+                    <mat-option [value]="'Redirecting'">
+                        Redirecting
+                    </mat-option>
+                    <mat-option [value]="'Broken'">
+                        Broken
+                    </mat-option>
+                    <mat-option [value]="'VPS'">
+                        VPS
+                    </mat-option>
+                    <mat-option [value]="'Third Party'">
+                        Third Party
+                    </mat-option>
+                    <mat-option [value]="'Blank Page'">
+                        Blank Page
+                    </mat-option>
+                </mat-select>
+                <!--<mat-error *ngIf="formErrors.type.required">-->
+                <!--Country is required!-->
+                <!--</mat-error>-->
+            </mat-form-field>
+                <mat-checkbox fxFlex="100" style="margin-left: 50px">Cpanel Status</mat-checkbox>
+                <mat-checkbox fxFlex="100" >SPF</mat-checkbox>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+            <mat-form-field fxFlex="100">
+                <mat-select placeholder="Infected">
+                    <mat-option [value]="'No'">
+                        No
+                    </mat-option>
+                    <mat-option [value]="'Yes'">
+                        Yes
+                    </mat-option>
+                    <mat-option [value]="'Maybe'">
+                        Maybe
+                    </mat-option>
+                </mat-select>
+                <!--<mat-error *ngIf="formErrors.type.required">-->
+                <!--Country is required!-->
+                <!--</mat-error>-->
+            </mat-form-field>
+            <mat-checkbox fxFlex="100" style="margin-left: 50px">FTP</mat-checkbox>
+            <mat-checkbox fxFlex="100" >Hidden</mat-checkbox>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+            <mat-form-field fxFlex="100">
+                <input matInput placeholder="Theme">
+            </mat-form-field>
+            <mat-form-field fxFlex="100">
+                <input matInput placeholder="Setup Date	">
+            </mat-form-field>
+            <mat-form-field fxFlex="100">
+                <input matInput placeholder="Package">
+            </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            <mat-label fxFlex="100">Cloudflare : </mat-label>
+            <mat-checkbox fxFlex="100">Account Created</mat-checkbox>
+            <mat-checkbox fxFlex="100">Website Linked to cloudflare account</mat-checkbox>
+        </div>
+
+        <!-- Buttons -->
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            <button mat-raised-button color="accent">Submit</button>
+            <button mat-raised-button color="warn">Cancel</button>
+            <button mat-raised-button color="primary">Reset</button>
+        </div>
+        <!-- / Buttons-->
     </mat-tab>
+
+    <!-- / Cpanel Details -->
+
+    <!-- Domain Details -->
 
     <mat-tab label="Domain Details" fxLayout="column">
         <div fxFlex fxLayout="column">
-            <div class="address h4 py-24">Domain Details</div>
+            <!--En tete-->
+            <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="m-0 mr-16 secondary-text">domain</mat-icon>
+                <div class="h2 secondary-text">Domain Details</div>
+            </div>
+            <!-- / En tete-->
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    <mat-form-field fxFlex="50">
+                        <input matInput placeholder="Main Domain">
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" *ngFor="let dummy of ' '.repeat(numberOfDomain).split('')">
+                    <mat-card>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker1" placeholder="Date">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="50">
+                            <input matInput placeholder="Location">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" placeholder="Paid Till">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+                    </mat-card>
+                </div>
+            <button fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto"style="width: 50%" mat-raised-button color="accent" (click)="onAddDomain()">Add Domain</button>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field fxFlex="50">
+                <input matInput placeholder="Email Location">
+            </mat-form-field>
+                <mat-form-field fxFlex="50">
+                    <input matInput placeholder="RC Customer Id">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Yearly Billing Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+
+            <!-- Buttons -->
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <button mat-raised-button color="accent">Submit</button>
+                <button mat-raised-button color="warn">Cancel</button>
+                <button mat-raised-button color="primary">Reset</button>
+            </div>
+            <!-- / Buttons-->
         </div>
     </mat-tab>
 
+    <!-- Domain Details -->
+
+    <!--  Performance -->
+
     <mat-tab label="Performance" fxLayout="column">
         <div fxFlex fxLayout="column">
-            <div class="address h4 py-24">Performance</div>
+            <!--En tete-->
+            <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="m-0 mr-16 secondary-text">developer_board</mat-icon>
+                <div class="h2 secondary-text">Performance</div>
+            </div>
+            <!-- / En tete-->
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-label fxFlex="100">Blog Vault : </mat-label>
+                <mat-checkbox fxFlex="100">Installed</mat-checkbox>
+                <mat-checkbox fxFlex="100">Configuration</mat-checkbox>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-label fxFlex="100">WP Rocket : </mat-label>
+                <mat-checkbox fxFlex="100">Installed</mat-checkbox>
+                <mat-checkbox fxFlex="100">Configuration</mat-checkbox>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-label fxFlex="100">Gonzales : </mat-label>
+                <mat-checkbox fxFlex="100">Installed</mat-checkbox>
+                <mat-checkbox fxFlex="100">Configuration</mat-checkbox>
+            </div>
+
+            <!-- Buttons -->
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <button mat-raised-button color="accent">Submit</button>
+                <button mat-raised-button color="warn">Cancel</button>
+                <button mat-raised-button color="primary">Reset</button>
+            </div>
+            <!-- / Buttons-->
         </div>
     </mat-tab>
+
+    <!-- / Performance -->
 </mat-tab-group>
