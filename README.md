@@ -1,6 +1,8 @@
-# Fuse2
+# TigerDen Solution
 
-Material Design Admin Template with Angular 6+ and Angular Material 2
+This project use fuse template and connected to firebase as a back end api
+![alt text](https://i.gyazo.com/8670a3d9448ddf1ba0a28a2369bf8b39.gif)
+![alt text](https://i.gyazo.com/b7479d57685fcffb5e0a310d16f181c9.gif)
 
 ## The Community
 
